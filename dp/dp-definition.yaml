@@ -1,0 +1,25 @@
+# Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: myapp-deployment
+    labels:
+        tier: front-end
+spec:
+    replicas: 4
+    selector:
+        matchLabels:
+            tier: front-end
+    template:
+        metadata:
+            name: myapp-pod
+            labels:
+                tier: front-end
+                app: myapp
+        spec:
+            containers:
+                -   name: nginx-container
+                    image: nginx
+                    imagePullPolicy: IfNotPresent
+            restartPolicy: Always

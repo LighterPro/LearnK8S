@@ -1,16 +1,21 @@
-# ReplicationController
+# ReplicaSet
 
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: ReplicaSet
 metadata:
-    name: myapp-rc
+    name: myapp-replicaset
     labels:
         app: myapp
         type: front-end
 spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: myapp
+            type: front-end
     template:
         metadata:
-            name: myapp-pod
+            name: nginx-pod
             labels:
                 app: myapp
                 type: front-end
@@ -18,4 +23,3 @@ spec:
             containers:
                 -   name: nginx-container
                     image: nginx
-    replicas: 3

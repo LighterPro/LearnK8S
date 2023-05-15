@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: web-app-color
+    labels:
+        app: web-app-color
+spec:
+    containers:
+        -   name: web-app-color
+            image: kodekloud/webapp-color
+            imagePullPolicy: IfNotPresent
+    restartPolicy: Always
